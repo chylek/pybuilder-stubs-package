@@ -62,8 +62,20 @@ setup(
     with open(jp(bd, "setup.py"), "w", encoding="utf8") as fw:
         fw.write(build_file)
     src_dir = project.expand_path(project.get_property("dir_source_main_python"))
+    private = project.get_property("stubs_include_private")
+    docstrings = project.get_property("stubs_include_docstrings")
+    command = [python_exec]
+    command.extend((
+        "-m","mypy.stubgen",
+        "--output",bd,
+    ))
+    if private:
+        command.append("--include-private")
+    if docstrings:
+        command.append("--include-docstrings")
+    command.append(src_dir)
     venv.execute_command(
-        f"{python_exec} -m mypy.stubgen --output {bd} --include-private --include-docstrings {src_dir}",
+        " ".join(command),
         shell=True,
     )
     os.rename(jp(bd, name), jp(bd, f"{name}-stubs"))

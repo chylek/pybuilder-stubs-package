@@ -37,7 +37,12 @@ classifiers = [
 ]
 
 description = """
-TODO
+This plugin adds stubs_publish and stubs_upload tasks that you can use in your
+build script.
+
+Using MyPy's stubgen it creates type hinting stubs (*.pyi files) as a separate
+package. This stubs-only package is named with the -stubs suffix following PEP
+561. For a pybuilder project foo this would create stubs-only package foo-stubs.
 """
 
 @init
