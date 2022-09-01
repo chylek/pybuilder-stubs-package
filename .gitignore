@@ -1,0 +1,8 @@
+*.pyc
+releases
+.idea/
+.vscode/
+*.iml
+.pybuilder
+__pycache__
+target
