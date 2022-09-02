@@ -6,3 +6,4 @@ releases
 .pybuilder
 __pycache__
 target
+venv/
