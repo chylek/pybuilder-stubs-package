@@ -8,7 +8,7 @@ from pybuilder.utils import jp
 
 @init
 def init_stubs_plugin(project):
-    project.plugin_depends_on("mypy", "~=0.980")
+    project.plugin_depends_on("mypy", "~=0.980.0")
     project.plugin_depends_on("twine", ">=1.15.0")
     project.plugin_depends_on("wheel", ">=0.34.0")
     project.plugin_depends_on("setuptools", ">=38.6.0")
