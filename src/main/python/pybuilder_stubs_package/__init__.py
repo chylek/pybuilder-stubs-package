@@ -64,20 +64,15 @@ setup(
     src_dir = project.expand_path(project.get_property("dir_source_main_python"))
     private = project.get_property("stubs_include_private")
     docstrings = project.get_property("stubs_include_docstrings")
-    command = [python_exec]
-    command.extend((
-        "-m","mypy.stubgen",
-        "--output",bd,
-    ))
+    stubgen_args = ["-q","--output",bd]
     if private:
-        command.append("--include-private")
+        stubgen_args.append("--include-private")
     if docstrings:
-        command.append("--include-docstrings")
-    command.append(src_dir)
-    venv.execute_command(
-        " ".join(command),
-        shell=True,
-    )
+        stubgen_args.append("--include-docstrings")
+    stubgen_args.append(src_dir)
+    import mypy.stubgen
+    mypy.stubgen.main(stubgen_args)
+
     os.rename(jp(bd, name), jp(bd, f"{name}-stubs"))
     venv.execute_command(f"{python_exec} setup.py bdist_wheel", cwd=bd, shell=True)
 
