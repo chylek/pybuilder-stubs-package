@@ -19,6 +19,7 @@ def build_dir(project):
 
 
 @task("stubs_publish", "Creates .pyi type stubs as a separate -stubs package")
+@depends("prepare")
 def stubs_publish(project, reactor):
     name = project.get_property("name", None)
     version = project.get_property("version", None)
